@@ -17,9 +17,11 @@
 		recognition.onresult = handleRecognitionResult;
 		recognition.onerror = handleRecognitionError;
 		recognition.onstart = () => {
+			isRecording = true;
 			isButtonDisabled = false;
 		};
 		recognition.onend = () => {
+			isRecording = false;
 			isButtonDisabled = false;
 		};
 	});
@@ -76,14 +78,12 @@
 		interimTranscript = '';
 		finalTranscript = '';
 		errorMessage = '';
-		isRecording = true; // 音声認識中フラグを立ててボタンの文言を「停止」に変更
-		isButtonDisabled = true; // ボタンを一時的に無効化
+		isButtonDisabled = true; // ボタンを一時的に無効化（連打防止）
 		recognition?.start();
 	}
 
 	function stopRecognition() {
-		isRecording = false; // 音声認識中フラグを下げてボタンの文言を「開始」に変更
-		isButtonDisabled = true; // ボタンを一時的に無効化
+		isButtonDisabled = true; // ボタンを一時的に無効化（連打防止）
 		recognition?.stop();
 	}
 
