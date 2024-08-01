@@ -106,14 +106,14 @@
 	</button>
 </div>
 <div class="transcript-area">
-	<span class="blue">{finalTranscript}</span>
-	<span class="red">{interimTranscript}</span>
+	<span class="final">{finalTranscript}</span>
+	<span class="interim">{interimTranscript}</span>
 </div>
 <div style="text-align: right">
-	<span class="blue">青: 認識完了</span> / <span class="red">赤: 認識中</span>
+	<span class="final">青: 認識完了</span> / <span class="interim">赤: 認識中</span>
 </div>
 {#if errorMessage}
-	<div class="red">{errorMessage}</div>
+	<div class="error">{errorMessage}</div>
 {/if}
 
 <style>
@@ -122,16 +122,24 @@
 	}
 
 	.transcript-area {
+		padding: 0 0.2em;
 		border: double 3px gray;
-		height: 150px;
+		height: 130px;
+		overflow-y: auto;
 	}
 
-	.blue {
-		color: #66f;
+	.final {
+		color: #03f;
 	}
 
-	.red {
-		color: #f66;
+	.interim {
+		background: #eee;
+		color: #f36;
+		text-decoration: underline;
+	}
+
+	.error {
+		color: red;
 	}
 
 	.recording-indicator {
